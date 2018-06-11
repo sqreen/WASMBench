@@ -20,7 +20,7 @@ asmModule.getStringArray = Lib.getStringArray;
 asmModule.newStringArray = Lib.newStringArray;
 
 
-const path = asmModule.newString('alpha');
+const path = asmModule.newString('/etc/passwd');
 const params = asmModule.newStringArray(['hello', '/etc/passwd']);
 const ptr = asmModule.pre(path, params);
 console.log(asmModule.getStringArray(ptr));

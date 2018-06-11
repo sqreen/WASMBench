@@ -37,3 +37,8 @@ export function cloneArray(arr: string[]): string[] {
     }
     return result;
 }
+
+export function equals(a: string, b: string): bool {
+
+    return a.startsWith(b) && a.length === b.length;
+}

@@ -24,6 +24,14 @@ const Lib = require('../lib');
 const env = { validateArrayItem() {} };
 describe('lib', () => {
 
+    it('should check string equality', { plan: 1 }, () => {
+
+        const asm = Loader.instantiateBuffer(Bin, { env });
+        const ptr = asm.newString('hello');
+        const ptr1 = asm.newString('hello');
+        expect(asm.equals(ptr, ptr1)).to.equal(1);
+    });
+
     it('should clone an hand_written array', { plan: 1 }, () => {
 
         const asm = Loader.instantiateBuffer(Bin, { env });
