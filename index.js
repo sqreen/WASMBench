@@ -20,7 +20,14 @@ asmModule.getStringArray = Lib.getStringArray;
 asmModule.newStringArray = Lib.newStringArray;
 
 
-const path = asmModule.newString('/etc/passwd');
-const params = asmModule.newStringArray(['hello', '/etc/passwd']);
-const ptr = asmModule.pre(path, params);
-console.log(asmModule.getStringArray(ptr));
+const pre = function (path, params) {
+    console.log('PRE', { path, params });
+    const path_ptr = asmModule.newString(path);
+    const params_ptr = asmModule.newStringArray(params);
+    const result_ptr = asmModule.pre(path_ptr, params_ptr);
+    return asmModule.getStringArray(result_ptr);
+};
+
+console.log(pre('/etc/passwd', ['hello', '/etc/passwd']));
+console.log(pre('/etc/secret/supersecret.txt', ['hello', '/etc/passwd']));
+console.log(pre('documents/../../../../../../../../../etc/passwd', ['hello', '../../../../../../../../../etc/passwd']));
