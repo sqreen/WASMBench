@@ -6,7 +6,7 @@ export const arr: string[] = ['hello', 'world'];
 
 export function toArray(a: string, b: string): string[] {
 
-    const results: string[] = [];
+    let results: string[] = [];
     results.push(a);
     results.push(b);
     return results;
@@ -14,7 +14,7 @@ export function toArray(a: string, b: string): string[] {
 
 export function getBigArray(pattern: string, nb: i32): string[] {
 
-    const res: string[] = new Array<string>(nb);
+    let res: string[] = new Array<string>(nb);
     for (let i = 0; i < nb; ++i) {
         res[i] = pattern;
     }
