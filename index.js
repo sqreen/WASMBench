@@ -38,6 +38,4 @@ asmModule.newStringArray = function (arr) {
     return ptr;
 };
 
-const ptr = asmModule.newStringArray(['a', 'b', 'j', 'aime', 'les', 'licornes']);
 
-console.log(asmModule.getStringArray(ptr));
