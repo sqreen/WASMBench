@@ -24,6 +24,22 @@ const Lib = require('../lib');
 const env = { validateArrayItem() {} };
 describe('lib', () => {
 
+    it('should clone an hand_written array', { plan: 1 }, () => {
+
+        const asm = Loader.instantiateBuffer(Bin, { env });
+        asm.getStringArray = Lib.getStringArray;
+        asm.newStringArray = Lib.newStringArray;
+
+        const arr = [];
+        for (let i = 0; i < 60; ++i) {
+            arr.push('nb_' + i);
+        }
+
+        const ptr = asm.newStringArray(arr);
+        const res_ptr = asm.cloneArray(ptr);
+        expect(asm.getStringArray(res_ptr)).to.equal(arr);
+    });
+
     it('should work together', { plan: 1 }, () => {
 
         const asm = Loader.instantiateBuffer(Bin, { env });

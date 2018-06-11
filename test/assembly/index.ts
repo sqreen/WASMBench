@@ -28,3 +28,12 @@ export function validateArray(arr: string[]): void {
         validateArrayItem(i, arr[i]);
     }
 }
+
+export function cloneArray(arr: string[]): string[] {
+
+    let result: string[] = new Array<string>(arr.length);
+    for (let i = 0; i < arr.length; ++i) {
+        result[i] = arr[i];
+    }
+    return result;
+}
