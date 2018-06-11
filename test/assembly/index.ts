@@ -20,3 +20,11 @@ export function getBigArray(pattern: string, nb: i32): string[] {
     }
     return res;
 }
+
+declare function validateArrayItem(i: i32, val: string): void;
+export function validateArray(arr: string[]): void {
+
+    for (let i = 0; i < arr.length; ++i) {
+        validateArrayItem(i, arr[i]);
+    }
+}
