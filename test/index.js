@@ -24,6 +24,21 @@ const Lib = require('../lib');
 const env = { validateArrayItem() {} };
 describe('lib', () => {
 
+    it('should work together', { plan: 1 }, () => {
+
+        const asm = Loader.instantiateBuffer(Bin, { env });
+        asm.getStringArray = Lib.getStringArray;
+        asm.newStringArray = Lib.newStringArray;
+
+        const arr = [];
+        for (let i = 0; i < 60; ++i) {
+            arr.push('nb_' + i);
+        }
+
+        const ptr = asm.newStringArray(arr);
+        expect(asm.getStringArray(ptr)).to.equal(arr);
+    });
+
     describe('newStringArray', () => {
 
         it('should properly write an array', { plan: 2 }, () => {
