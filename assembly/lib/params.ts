@@ -2,7 +2,7 @@ export function matchingParams(str: string, params: string[], minLength: i32): s
 
     const res: string[] = [];
     for (let i = 0; i < params.length; ++i) {
-        if (params[i].length > minLength && str.includes(params[i])) {
+        if (str.indexOf(params[i]) > -1) {
             res.push(params[i]);
         }
     }

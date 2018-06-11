@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "pretest": "mkdirp test/build && asc test/assembly/index.ts -b test/build/optimized.wasm -t test/build/optimized.wat --sourceMap --validate --optimize --noDebug",
+    "test": "lab -a code",
     "asbuild:untouched": "asc assembly/index.ts -b build/untouched.wasm -t build/untouched.wat --sourceMap --validate",
     "asbuild:optimized": "asc assembly/index.ts -b build/optimized.wasm -t build/optimized.wat --sourceMap --validate --optimize --noDebug",
     "build": "npm run asbuild:untouched && npm run asbuild:optimized"
@@ -21,7 +22,9 @@
   "homepage": "https://github.com/sqreen/WASM_ShieldRules#readme",
   "devDependencies": {
     "assemblyscript": "file:vendor/assemblyscript-0.5.0.tgz",
-    "chalk": "^2.4.1"
+    "chalk": "^2.4.1",
+    "code": "^5.2.0",
+    "lab": "^15.5.0"
   },
   "dependencies": {
     "@assemblyscript/loader": "file:vendor/assemblyscript-loader-1.0.0.tgz"
