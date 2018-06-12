@@ -1,10 +1,8 @@
 // The entry file of your WebAssembly module.
 import "allocator/tlsf";
+export { allocate_memory, free_memory }; // needed to manipulate strings and arrays from outside
 import { normalizePath } from './lib/path';
 
-declare function log(str: string, val: string): void;
-
-export { allocate_memory, free_memory }; // needed to manipulate strings and arrays from outside
 
 const RELEVANT_INJECTED_SIZE = 5;
 
@@ -32,12 +30,12 @@ export function pre(filePath: string, params: string[]): string[] {
     }
 
     for (let i = 0; i < common.length; ++i) {
-        const part:string = common[i];
+        let part:string = common[i];
         if (part.startsWith('/') && filePath.startsWith('/') && equal(filePath, part)) {
             return report(filePath, part);
         }
         if (filePath.endsWith(part)) {
-            const current = normalizePath(part);
+            let current = normalizePath(part);
             // TODO: write memory efficien split
             if (current.includes('../') || current.includes('../')) { // equivalent to splitted = current.split('/'); then (splitted.length > 1 && includes(splitted, '..')
                 return report(filePath, part);

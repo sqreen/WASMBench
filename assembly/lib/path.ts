@@ -23,7 +23,7 @@ function normalizeStringPosix(path: string, allowAboveRoot: boolean): string {
                     res.charCodeAt(res.length - 1) !== 46/*.*/ ||
                     res.charCodeAt(res.length - 2) !== 46/*.*/) {
                     if (res.length > 2) {
-                        const start = res.length - 1;
+                        let start = res.length - 1;
                         let j = start;
                         for (; j >= 0; --j) {
                             if (res.charCodeAt(j) === 47/*/*/)
@@ -73,8 +73,8 @@ function normalize(path: string): string {
     if (path.length === 0)
         return '.';
 
-    const isAbsolute = path.charCodeAt(0) === 47/*/*/;
-    const trailingSeparator = path.charCodeAt(path.length - 1) === 47/*/*/;
+    let isAbsolute = path.charCodeAt(0) === 47/*/*/;
+    let trailingSeparator = path.charCodeAt(path.length - 1) === 47/*/*/;
 
     // Normalize the path
     path = normalizeStringPosix(path, !isAbsolute);
