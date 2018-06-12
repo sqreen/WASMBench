@@ -36,7 +36,6 @@ const long = Array.apply(null, Array(50)).map(Number.prototype.valueOf,0).map((x
 
 const main = async function () {
 
-
     await run('no attack', '/var/www/imgs/me.jpg', ['me']);
     await run('no attack big params', '/var/www/imgs/me.jpg', long);
     await run('attack', 'documents/../../../../../../../../../etc/passwd', ['../../../../../../../../../etc/passwd']);
