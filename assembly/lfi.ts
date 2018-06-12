@@ -38,7 +38,7 @@ export function pre(filePath: string, params: string[]): string[] {
         }
         if (filePath.endsWith(part)) {
             const current = normalizePath(part);
-            if (current.includes('/../')) { // equivalent to splitted = current.split('/'); then (splitted.length > 1 && includes(splitted, '..')
+            if (current.includes('../') || current.includes('../')) { // equivalent to splitted = current.split('/'); then (splitted.length > 1 && includes(splitted, '..')
                 return report(filePath, part);
             }
         }

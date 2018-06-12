@@ -16,9 +16,9 @@ const Path = require('path');
 
 const Loader = require('@assemblyscript/loader');
 
-const Bin = Fs.readFileSync(Path.join(__dirname, 'build', 'optimized.wasm'));
+const Bin = Fs.readFileSync(Path.join(__dirname, '..', 'build', 'lib.index.optimized.wasm'));
 
-const Lib = require('../lib');
+const Lib = require('../../lib');
 
 
 const env = { validateArrayItem() {} };
