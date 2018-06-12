@@ -42,7 +42,7 @@ const mkdirP = Util.promisify(MkdirP.mkdirP);
 const build = async function (srcDir, targetDir) {
 
     await mkdirP(targetDir);
-    const srcFiles = (await readDir(srcDir)).filter((x) => x.endsWith('.ts'));
+    const srcFiles = (await readDir(srcDir)).filter((x) => x.endsWith('.ts')).filter((x) => !x.endsWith('.pure.ts'));
     for (const file of srcFiles) {
         const fileName = (Path.parse(file)).name;
         const targetFile = Path.relative(__dirname, Path.join(targetDir, fileName + '.optimized.wasm'));
@@ -58,6 +58,7 @@ const buildAll = async function () {
     }
     catch (e) {
         console.error(e);
+        process.exit(1);
     }
 };
 

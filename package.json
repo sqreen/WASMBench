@@ -7,7 +7,7 @@
     "pretest": "node build",
     "test": "lab -a code",
     "build": "node build.js",
-    "build:ts": "tsc "
+    "build:ts": "tsc -p assembly"
   },
   "repository": {
     "type": "git",
