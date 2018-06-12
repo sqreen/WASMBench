@@ -6,7 +6,8 @@
   "scripts": {
     "pretest": "node build",
     "test": "lab -a code",
-    "build": "node build.js"
+    "build": "node build.js",
+    "build:ts": "tsc "
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,8 @@
     "chalk": "^2.4.1",
     "code": "^5.2.0",
     "lab": "^15.5.0",
-    "mkdirp": "^0.5.1"
+    "mkdirp": "^0.5.1",
+    "typescript": "^2.9.1"
   },
   "dependencies": {
     "@assemblyscript/loader": "file:vendor/assemblyscript-loader-1.0.0.tgz"

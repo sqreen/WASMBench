@@ -6,7 +6,7 @@ function normalizeStringPosix(path: string, allowAboveRoot: boolean): string {
     let res = '';
     let lastSlash = -1;
     let dots = 0;
-    let code: i32;
+    let code: i32 = -1;
     for (let i = 0; i <= path.length; ++i) {
         let cont = false;
         if (i < path.length)

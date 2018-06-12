@@ -1,6 +1,6 @@
 // The entry file of your WebAssembly module.
-import "allocator/tlsf";
-export { allocate_memory, free_memory }; // needed to manipulate strings and arrays from outside
+// import "allocator/tlsf";
+// export { allocate_memory, free_memory }; // needed to manipulate strings and arrays from outside
 import { normalizePath } from './lib/path';
 
 
