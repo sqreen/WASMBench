@@ -11,8 +11,6 @@ const describe = lab.describe;
 const it = lab.it;
 const expect = Code.expect;
 
-const Fs = require('fs');
-const Path = require('path');
 
 const LFI = require('../../lib/lfi');
 
@@ -27,6 +25,7 @@ describe('LFI', () => {
                 what: '../../../../../../../../../etc/passwd'
             }
         });
+        expect(LFI.pre('/home/my/documents/pony.txt', ['/home/my/documents/'])).to.equal(null);
     });
 
     it('should detect LFIs imgs/../secret.yml', () => {

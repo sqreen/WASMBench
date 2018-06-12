@@ -4,3 +4,42 @@
  */
 'use strict';
 const Benchmark = require('benchmark');
+
+const LFI = require('../lib/lfi');
+const TsLFI = require('../build_ts/lfi.pure');
+
+const run = function (name, path, params) {
+
+    return new Promise((resolve) => {
+
+        LFI.init();
+        console.log(name);
+        (new Benchmark.Suite(name))
+            .add('LFI.wasm', () => {
+                LFI.rawPre(path, params);
+            })
+            .add('LFI.ts', () => {
+                TsLFI.pre(path, params);
+            })
+            .on('cycle', function(event) {
+                console.log(String(event.target));
+            })
+            .on('complete', (x) => {
+                console.log(`Fatest is ${x.currentTarget.filter('fastest').map('name')}`);
+                resolve();
+            })
+            .run();
+    });
+};
+
+const long = Array.apply(null, Array(50)).map(Number.prototype.valueOf,0).map((x, i) => 'nb_' + i);
+
+const main = async function () {
+
+
+    await run('no attack', '/var/www/imgs/me.jpg', ['me']);
+    await run('no attack big params', '/var/www/imgs/me.jpg', long);
+    await run('attack', 'documents/../../../../../../../../../etc/passwd', ['../../../../../../../../../etc/passwd']);
+};
+
+main();
