@@ -8,23 +8,23 @@ const report = function (found: string, what: string): string[] {
     return ['raise', found, what];
 };
 
-export function pre(filePath: string, params: string[]): string[] {
+export function pre(filePath: string, params: string[]): bool {
 
     for (let i = 0; i < params.length; ++i) {
         var part = params[i];
         if (part.length > RELEVANT_INJECTED_SIZE && filePath.includes(part)) {
             if (part.startsWith('/') && filePath.startsWith('/') && filePath == part) {
-                return report(filePath, part);
+                return true;
             }
             if (filePath.endsWith(part)) {
                 var current = normalizePath(part);
                 // TODO: write memory efficien split
                 if (current.includes('../') || current.includes('../')) { // equivalent to splitted = current.split('/'); then (splitted.length > 1 && includes(splitted, '..')
-                    return report(filePath, part);
+                    return true;
                 }
             }
         }
     }
 
-    return [];
+    return false;
 }
