@@ -16,7 +16,7 @@ const report = function (found: string, what: string): string[] {
 const equal = function (a: string, b: string): bool {
 
     return a.length === b.length && a.startsWith(b)
-}
+};
 
 export function pre(filePath: string, params: string[]): string[] {
 
@@ -38,6 +38,7 @@ export function pre(filePath: string, params: string[]): string[] {
         }
         if (filePath.endsWith(part)) {
             const current = normalizePath(part);
+            // TODO: write memory efficien split
             if (current.includes('../') || current.includes('../')) { // equivalent to splitted = current.split('/'); then (splitted.length > 1 && includes(splitted, '..')
                 return report(filePath, part);
             }
