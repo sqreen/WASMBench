@@ -24,3 +24,10 @@ export function _hasInjectedPaths(path: string, params: string): bool {
 
     return hasInjectedPathsLIB(params, split(params, '|'));
 }
+
+export function run(): void {
+
+    for (let i = 0; i < 10000; ++i) {
+        hasInjectedPathsLIB('documents/../../../../../../../../../etc/passwd', ['../../../../../../../../../etc/passwd']);
+    }
+}

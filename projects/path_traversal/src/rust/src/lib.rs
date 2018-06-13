@@ -14,7 +14,6 @@ pub mod lfi {
                 }
 
                 if file_path.ends_with(part) {
-                    // TODO normalize part
                     let current = part;
                     if current.contains("/..") || current.contains("../") {
                         return  true
@@ -30,4 +29,11 @@ pub mod lfi {
 #[wasm_bindgen]
 pub fn hasInjectedPaths(a: &str, b: &str) -> bool {
     lfi::find_injected_paths(a, b.split("|").collect())
+}
+
+#[wasm_bindgen]
+pub fn run() {
+    for _i in 0..10000 {
+        lfi::find_injected_paths("documents/../../../../../../../../../etc/passwd", vec!["../../../../../../../../../etc/passwd"]);
+    }
 }
