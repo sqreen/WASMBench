@@ -27,7 +27,7 @@ export function _hasInjectedPaths(path: string, params: string): bool {
 
 export function run(): void {
 
-    for (let i = 0; i < 10000; ++i) {
+    for (let i = 0; i < 1000; ++i) {
         hasInjectedPathsLIB('documents/../../../../../../../../../etc/passwd', ['../../../../../../../../../etc/passwd']);
     }
 }

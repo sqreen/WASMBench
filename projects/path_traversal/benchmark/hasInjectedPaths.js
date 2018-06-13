@@ -26,6 +26,10 @@ const runBench = function (name, method, ...args) {
             });
         }
 
+        suite.on('error', (err) => {
+            console.log(err);
+        });
+
         suite.on('cycle', function(event) {
             console.log(String(event.target));
         });

@@ -33,7 +33,7 @@ pub fn hasInjectedPaths(a: &str, b: &str) -> bool {
 
 #[wasm_bindgen]
 pub fn run() {
-    for _i in 0..10000 {
+    for _i in 0..1000 {
         lfi::find_injected_paths("documents/../../../../../../../../../etc/passwd", vec!["../../../../../../../../../etc/passwd"]);
     }
 }
