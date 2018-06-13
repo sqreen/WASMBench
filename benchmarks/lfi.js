@@ -7,6 +7,7 @@ const Benchmark = require('benchmark');
 
 const LFI = require('../lib/lfi');
 const TsLFI = require('../build_ts/lfi.pure');
+const RsLFI = require('../rust_lfi/index');
 
 const run = function (name, path, params) {
 
@@ -15,39 +16,14 @@ const run = function (name, path, params) {
         LFI.init();
         console.log(name);
         (new Benchmark.Suite(name))
+            .add('LFI.js', () => {
+                TsLFI.pre(path, params);
+            })
             .add('LFI.wasm', () => {
                 LFI.rawPre(path, params);
             })
-            .add('LFI.ts', () => {
-                TsLFI.pre(path, params);
-            })
-            .on('cycle', function(event) {
-                console.log(String(event.target));
-            })
-            .on('complete', (x) => {
-                console.log(`Fatest is ${x.currentTarget.filter('fastest').map('name')}`);
-                resolve();
-            })
-            .run();
-    });
-};
-
-const runWithCache = function (name, path, params) {
-
-    return new Promise((resolve) => {
-
-        const asmModule = LFI.asmModule;
-        const path_ptr = asmModule.newString(path);
-        const params_ptr = asmModule.newStringArray(params);
-
-        LFI.init();
-        console.log(name);
-        (new Benchmark.Suite(name))
-            .add('LFI.wasm', () => {
-                asmModule.pre(path_ptr, params_ptr);
-            })
-            .add('LFI.ts', () => {
-                TsLFI.pre(path, params);
+            .add('LFI.rs', () => {
+                RsLFI.pre(path, params);
             })
             .on('cycle', function(event) {
                 console.log(String(event.target));

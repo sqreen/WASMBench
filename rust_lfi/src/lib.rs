@@ -3,9 +3,6 @@ extern crate wasm_bindgen;
 
 use wasm_bindgen::prelude::*;
 
-
-
-
 pub mod lfi {
     const RELEVANT_INJECTED_SIZE: usize = 5;
 
@@ -15,7 +12,6 @@ pub mod lfi {
                 if part.starts_with("/") && file_path.starts_with("/") && &file_path == part {
                     return true
                 }
-
 
                 if file_path.ends_with(part) {
                     // TODO normalize part
