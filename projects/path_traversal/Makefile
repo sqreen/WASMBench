@@ -1,4 +1,4 @@
-.PHONY: test
+.PHONY: test benchmark
 
 all: install clean build test
 
@@ -26,3 +26,6 @@ build-rust:
 
 test:
 	npm test
+
+benchmark:
+	node benchmark/index.js
