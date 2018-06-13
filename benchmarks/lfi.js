@@ -65,11 +65,6 @@ const long = Array.apply(null, Array(50)).map(Number.prototype.valueOf,0).map((x
 const main = async function () {
 
     console.log();
-    console.log('Without js -> wasm and wasm -> js');
-    await runWithCache('no attack reuse pointers', '/var/www/imgs/me.jpg', ['me']);
-    await runWithCache('no attack reuse pointers big params', '/var/www/imgs/me.jpg', long);
-
-    console.log();
     console.log('With js -> wasm and wasm -> js');
     await run('no attack', '/var/www/imgs/me.jpg', ['me']);
     await run('no attack big params', '/var/www/imgs/me.jpg', long);

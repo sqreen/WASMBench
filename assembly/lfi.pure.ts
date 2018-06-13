@@ -1,3 +1,6 @@
-import { pre } from './lib/lfi';
+import { preCB } from './lib/lfi';
 
-export { pre };
+export function pre (path: string, params: string): boolean {
+
+    return Boolean(preCB(path, params.split('|')));
+}

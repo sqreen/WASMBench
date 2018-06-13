@@ -1,3 +1,11 @@
+#![feature(proc_macro, wasm_custom_section, wasm_import_module)]
+extern crate wasm_bindgen;
+
+use wasm_bindgen::prelude::*;
+
+
+
+
 pub mod lfi {
     const RELEVANT_INJECTED_SIZE: usize = 5;
 
@@ -22,6 +30,10 @@ pub mod lfi {
     }
 }
 
+#[wasm_bindgen]
+pub fn pre(a: &str, b: &str) -> bool {
+    lfi::pre(a, b.split("|").collect())
+}
 
 #[cfg(test)]
 mod tests {

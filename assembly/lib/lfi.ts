@@ -1,14 +1,7 @@
 // The entry file of your WebAssembly module.
-import { normalizePath } from './path';
-
 const RELEVANT_INJECTED_SIZE = 5;
 
-const report = function (found: string, what: string): string[] {
-
-    return ['raise', found, what];
-};
-
-export function pre(filePath: string, params: string[]): bool {
+export function preCB(filePath: string, params: string[]): bool {
 
     for (let i = 0; i < params.length; ++i) {
         var part = params[i];

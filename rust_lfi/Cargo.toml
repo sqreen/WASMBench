@@ -3,4 +3,10 @@ name = "rust_lfi"
 version = "0.1.0"
 authors = ["vdeturckheim <vlad2t@hotmail.com>"]
 
+[lib]
+crate-type = ["cdylib"]
+
 [dependencies]
+wasm-bindgen = "0.2"
+
+
