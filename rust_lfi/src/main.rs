@@ -1,12 +1,46 @@
-mod lfi;
+pub mod lfi {
+    const RELEVANT_INJECTED_SIZE: usize = 5;
 
-//use std::path::PathBuf;
+    pub fn pre(file_path: &str, params: Vec<&str>) -> bool {
+        for part in &params {
+            if part.len() > RELEVANT_INJECTED_SIZE && file_path.contains(part) {
+                if part.starts_with("/") && file_path.starts_with("/") && &file_path == part {
+                    return true
+                }
 
-fn main() {
-    let res = lfi::pre("imgs/../secret.yml", vec!["../secret.yml"]);
-    println!("{}", res);
-/*    let mut path = PathBuf::new();
-    path.push("a/bb//../c");
-    let res = path.canonicalize();
-    println!("{:?}", res)*/
+
+                if file_path.ends_with(part) {
+                    // TODO normalize part
+                    let current = part;
+                    if current.contains("/..") || current.contains("../") {
+                        return  true
+                    }
+                }
+            }
+        };
+        false
+    }
 }
+
+
+#[cfg(test)]
+mod tests {
+    use lfi;
+    #[test]
+    fn lfi() {
+        assert!(lfi::pre("/etc/passwd", vec!["hello", "/etc/passwd"]));
+        assert!(lfi::pre("documents/../../../../../../../../../etc/passwd", vec!["../../../../../../../../../etc/passwd"]));
+        assert!(lfi::pre("imgs/../secret.yml", vec!["../secret.yml"]));
+    }
+
+    #[test]
+    fn lfi_fp() {
+        assert!(!lfi::pre("/home/my/documents/pony.txt", vec!["/home/my/documents/"]));
+        assert!(!lfi::pre("a/etc/password", vec!["a/etc/password"]));
+        assert!(!lfi::pre("documents/pony.txt", vec!["my/documents/pony.txt"]));
+        assert!(!lfi::pre("XXX/YYY/documents/pony.txt", vec!["documents/pony.txt"]));
+        assert!(!lfi::pre("documents/unicorn", vec!["pony.txt"]));
+        assert!(!lfi::pre("documents/unicorn.jp", vec!["pony.jp"]));
+    }
+}
+
