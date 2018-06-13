@@ -1,0 +1,17 @@
+{
+  "name": "path_traversal",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "lab"
+  },
+  "dependencies": {
+    "@assemblyscript/loader": "file:../../vendor/assemblyscript-loader-1.0.0.tgz"
+  },
+  "devDependencies": {
+    "benchmark": "^2.1.4",
+    "code": "^5.2.0",
+    "lab": "^15.5.0",
+    "typescript": "^2.9.1"
+  }
+}
