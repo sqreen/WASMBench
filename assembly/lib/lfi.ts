@@ -17,7 +17,8 @@ export function pre(filePath: string, params: string[]): bool {
                 return true;
             }
             if (filePath.endsWith(part)) {
-                var current = normalizePath(part);
+                // var current = normalizePath(part);
+                var current = part;
                 // TODO: write memory efficien split
                 if (current.includes('/..') || current.includes('../')) { // equivalent to splitted = current.split('/'); then (splitted.length > 1 && includes(splitted, '..')
                     return true;
