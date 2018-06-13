@@ -4,5 +4,9 @@
   "description": "",
   "dependencies": {
     "@assemblyscript/loader": "file:../../vendor/assemblyscript-loader-1.0.0.tgz"
+  },
+  "devDependencies": {
+    "code": "^5.2.0",
+    "lab": "^15.5.0"
   }
 }

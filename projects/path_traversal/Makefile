@@ -1,9 +1,10 @@
-all:
+all: clean build
 
-build: clean build-typescript build-assemblyscript
+build: build-typescript build-assemblyscript build-rust
 
 clean:
 	rm -rf build
+	rm -rf src/rust/target
 
 install:
 	npm install
@@ -15,3 +16,8 @@ build-typescript:
 
 build-assemblyscript:
 	cd src/assemblyscript && npm run build
+
+build-rust:
+	cd src/rust && cargo build --target wasm32-unknown-unknown --release
+	mkdir -p build/rust
+	wasm-bindgen src/rust/target/wasm32-unknown-unknown/release/lib.wasm --nodejs --out-dir build/rust
