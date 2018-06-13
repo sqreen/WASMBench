@@ -1,7 +1,7 @@
 // The entry file of your WebAssembly module.
 const RELEVANT_INJECTED_SIZE = 5;
 
-export function preCB(filePath: string, params: string[]): bool {
+export function preCB(filePath: string, params: string[]): boolean {
 
     for (let i = 0; i < params.length; ++i) {
         var part = params[i];
@@ -23,9 +23,4 @@ export function preCB(filePath: string, params: string[]): bool {
     return false;
 }
 
-export function run(): void {
 
-    for (let i = 0; i < 10000; ++i) {
-        preCB('documents/../../../../../../../../../etc/passwd', ["hello", "/etc/passwd" + <string> i]);
-    }
-}

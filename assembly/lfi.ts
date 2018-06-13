@@ -1,6 +1,6 @@
 import "allocator/arena";
 export { allocate_memory, free_memory }; // needed to manipulate strings and arrays from outside
-import { preCB, run } from './lib/lfi';
+import { preCB } from './lib/lfi';
 
 function split(str: string, sep: string): string[] {
 
@@ -25,4 +25,9 @@ export function pre(path: string, params: string): bool {
 }
 
 
-export { run };
+export function run(): void {
+
+    for (let i = 0; i < 10000; ++i) {
+        preCB('documents/../../../../../../../../../etc/passwd', ["hello", "/etc/passwd" + <string> i]);
+    }
+}

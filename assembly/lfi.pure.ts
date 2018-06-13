@@ -1,10 +1,13 @@
-import { preCB, run } from './lib/lfi';
+import { preCB } from './lib/lfi';
 
-/*
 export function pre (path: string, params: string): boolean {
 
-    return Boolean(preCB(path, params.split('|')));
+    return !!(preCB(path, params.split('|')));
 }
-*/
 
-export { run };
+export function run(): void {
+
+    for (let i = 0; i < 10000; ++i) {
+        preCB('documents/../../../../../../../../../etc/passwd', ["hello", "/etc/passwd" + i]);
+    }
+}
