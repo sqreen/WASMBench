@@ -1,0 +1,8 @@
+{
+  "name": "path_traversal",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "@assemblyscript/loader": "file:../../vendor/assemblyscript-loader-1.0.0.tgz"
+  }
+}
