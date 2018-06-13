@@ -1,4 +1,6 @@
-all: clean build
+.PHONY: test
+
+all: install clean build test
 
 build: build-typescript build-assemblyscript build-rust
 
@@ -21,3 +23,6 @@ build-rust:
 	cd src/rust && cargo build --target wasm32-unknown-unknown --release
 	mkdir -p build/rust
 	wasm-bindgen src/rust/target/wasm32-unknown-unknown/release/lib.wasm --nodejs --out-dir build/rust
+
+test:
+	npm test

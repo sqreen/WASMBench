@@ -1,7 +1,7 @@
-import { findInjectedPathsLIB } from './shared'
+import { hasInjectedPathsLIB } from './shared'
 
-export function findInjectedPaths(path: string, params: string): boolean {
+export function hasInjectedPaths(path: string, params: string): boolean {
 
-    return findInjectedPathsLIB(params, params.split('|'));
+    return hasInjectedPathsLIB(params, params.split('|'));
 }
 

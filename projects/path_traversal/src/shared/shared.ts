@@ -1,7 +1,7 @@
 // The entry file of your WebAssembly module.
 const RELEVANT_INJECTED_SIZE = 5;
 
-export function findInjectedPathsLIB(filePath: string, params: string[]): boolean {
+export function hasInjectedPathsLIB(filePath: string, params: string[]): boolean {
 
     for (let i = 0; i < params.length; ++i) {
         var part = params[i];

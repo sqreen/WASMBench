@@ -1,7 +1,7 @@
 import "allocator/arena";
 export { allocate_memory, free_memory }; // needed to manipulate strings and arrays from outside
 
-import { findInjectedPathsLIB } from '../shared/shared'
+import { hasInjectedPathsLIB } from '../shared/shared'
 
 function split(str: string, sep: string): string[] {
 
@@ -20,7 +20,7 @@ function split(str: string, sep: string): string[] {
     return res;
 }
 
-export function _findInjectedPaths(path: string, params: string): bool {
+export function _hasInjectedPaths(path: string, params: string): bool {
 
-    return findInjectedPathsLIB(params, split(params, '|'));
+    return hasInjectedPathsLIB(params, split(params, '|'));
 }

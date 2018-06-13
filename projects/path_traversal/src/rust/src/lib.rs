@@ -6,7 +6,7 @@ use wasm_bindgen::prelude::*;
 pub mod lfi {
     const RELEVANT_INJECTED_SIZE: usize = 5;
 
-    pub fn pre(file_path: &str, params: Vec<&str>) -> bool {
+    pub fn find_injected_paths(file_path: &str, params: Vec<&str>) -> bool {
         for part in &params {
             if part.len() > RELEVANT_INJECTED_SIZE && file_path.contains(part) {
                 if part.starts_with("/") && file_path.starts_with("/") && &file_path == part {
@@ -26,7 +26,8 @@ pub mod lfi {
     }
 }
 
+#[allow(non_snake_case)]
 #[wasm_bindgen]
-pub fn pre(a: &str, b: &str) -> bool {
-    lfi::pre(a, b.split("|").collect())
+pub fn hasInjectedPaths(a: &str, b: &str) -> bool {
+    lfi::find_injected_paths(a, b.split("|").collect())
 }
