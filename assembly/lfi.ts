@@ -1,6 +1,6 @@
 import "allocator/arena";
 export { allocate_memory, free_memory }; // needed to manipulate strings and arrays from outside
-import { preCB } from './lib/lfi';
+import { preCB, run } from './lib/lfi';
 
 function split(str: string, sep: string): string[] {
 
@@ -24,3 +24,5 @@ export function pre(path: string, params: string): bool {
     return preCB(path, split(params, '|'));
 }
 
+
+export { run };

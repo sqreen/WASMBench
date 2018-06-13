@@ -1,11 +1,14 @@
 {
   "extends": "../node_modules/assemblyscript/std/assembly.json",
   "include": [
-    "./**/*.pure.ts"
+    "./*.pure.ts"
+  ],
+  "lib": [
+    "es2017"
   ],
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es3",
+    "target": "es6",
     "noImplicitAny": false,
     "outDir": "../build_ts",
     "rootDir": ".",

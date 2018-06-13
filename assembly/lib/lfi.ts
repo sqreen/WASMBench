@@ -22,3 +22,10 @@ export function preCB(filePath: string, params: string[]): bool {
 
     return false;
 }
+
+export function run(): void {
+
+    for (let i = 0; i < 10000; ++i) {
+        preCB('documents/../../../../../../../../../etc/passwd', ["hello", "/etc/passwd" + <string> i]);
+    }
+}

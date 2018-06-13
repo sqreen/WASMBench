@@ -31,6 +31,13 @@ pub fn pre(a: &str, b: &str) -> bool {
     lfi::pre(a, b.split("|").collect())
 }
 
+#[wasm_bindgen]
+pub fn run() {
+    for i in 0..10000 {
+        lfi::pre("documents/../../../../../../../../../etc/passwd", vec!["hello", &format!("/etc/passwd {}", i)]);
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use lfi;
