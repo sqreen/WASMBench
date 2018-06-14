@@ -49,6 +49,11 @@ const main = async function () {
         .then((bench) => {
             console.log('=> Fastest is ' + bench.currentTarget.filter('fastest').map('name'));
         });
+
+    await runBench('simple hasInjectedPaths', 'hasInjectedPaths', 'documents/img/me.jpg', ['/etc/passwd'].join('|'))
+        .then((bench) => {
+            console.log('=> Fastest is ' + bench.currentTarget.filter('fastest').map('name'));
+        });
 };
 
 main();
