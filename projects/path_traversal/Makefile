@@ -28,4 +28,5 @@ test:
 	npm test
 
 benchmark:
-	node benchmark/index.js
+	node benchmark/hasInjectedPaths.js
+	node benchmark/run.js
