@@ -45,12 +45,12 @@ const runBench = function (name, method, ...args) {
 
 const main = async function () {
 
-    await runBench('simple count 1000', 'count', 1000)
+    await runBench('simple inclusion', 'includes', 'hello world', 'world')
         .then((bench) => {
             console.log('=> Fastest is ' + bench.currentTarget.filter('fastest').map('name'));
         });
 
-    await runBench('simple count 100000', 'count', 100000)
+    await runBench('simple non inclusion', 'includes', 'hello world', 'foo')
         .then((bench) => {
             console.log('=> Fastest is ' + bench.currentTarget.filter('fastest').map('name'));
         });

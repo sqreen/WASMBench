@@ -1,0 +1,12 @@
+{
+  "name": "path-traveral-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -p ."
+  },
+  "devDependencies": {
+    "typescript": "^2.9.1"
+  }
+}
