@@ -1,4 +1,5 @@
-.PHONY: test benchmark
+.PHONY: test
+.PHONY: benchmark
 
 all: install clean build
 
@@ -25,4 +26,5 @@ build-rust:
 	wasm-bindgen src/rust/target/wasm32-unknown-unknown/release/lib.wasm --nodejs --out-dir build/rust
 
 benchmark:
-	node benchmark/index.js
+	node benchmark/count.js
+	node benchmark/run.js
