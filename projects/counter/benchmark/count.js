@@ -22,7 +22,7 @@ const runBench = function (name, method, ...args) {
         for (let item of targets) {
             suite.add(item, () => {
 
-                modules[item][method](10);
+                modules[item][method].apply(null, args);
             });
         }
 
@@ -45,7 +45,7 @@ const runBench = function (name, method, ...args) {
 
 const main = async function () {
 
-    await runBench('simple count', 'count')
+    await runBench('simple count', 'count', [1000])
         .then((bench) => {
             console.log('=> Fastest is ' + bench.currentTarget.filter('fastest').map('name'));
         });
