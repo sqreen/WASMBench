@@ -2,7 +2,6 @@
 const RELEVANT_INJECTED_SIZE = 5;
 
 export function hasInjectedPathsLIB(filePath: string, params: string[]): boolean {
-
     for (let i = 0; i < params.length; ++i) {
         var part = params[i];
         if (part.length > RELEVANT_INJECTED_SIZE && filePath.includes(part)) {
@@ -11,8 +10,7 @@ export function hasInjectedPathsLIB(filePath: string, params: string[]): boolean
             }
             if (filePath.endsWith(part)) {
                 var current = part;
-                // TODO: write memory efficien split
-                if (current.includes('/..') || current.includes('../')) { // equivalent to splitted = current.split('/'); then (splitted.length > 1 && includes(splitted, '..')
+                if (current.includes('/..') || current.includes('../')) {
                     return true;
                 }
             }
